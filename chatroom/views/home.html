@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The chatroom</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/css.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../lib/css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+    <style>
+        .w3-myfont {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        .w3-allerta {
+        font-family: "Allerta Stencil", Sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid w3-teal">
+            <div class="navbar-header w3-teal">
+                <a class="navbar-brand w3-teal w3-allerta w3-xxxlarge" href="#">The chatroom</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="margin-top: 60px">
+        <div class="row col-sm-12 col-md-12">
+            <div class="col-sm-3 col-md-3 sidebar">
+                <!--Personal Information-->
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="glyphicon glyphicon-user">&nbsp;Personal Info</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-sm-6">
+                                <img src="{{image}}" alt="Image" style="width: 100%;" id="userImage">
+                            </div>
+                            <div class="col-sm-6 w3-small">
+                                <p>Nickname:<span id="username">{{username}}</span></p>
+                                <p><a data-toggle="modal" data-target="#changeInfo">Modify Information</a></p>
+                                <p><a id="exitBtn">Quit</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="glyphicon glyphicon-pushpin">&nbsp;Online Users</h4>
+                        </div>
+                        <div class="panel-body">
+                            <ul id="peopleList">
+                            </ul>
+                        </div>
+                        <div class="panel-footer" id="list-count">
+                            OnlineNumber:<span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9  col-md-9">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="glyphicon glyphicon-leaf">&nbsp;Content</h4>
+                        </div>
+                        <div class="panel-body">
+                            <ul id="MsgList" class="list">
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="infoBox">
+                                <div id="navbar" class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav option">
+                                        <li>
+                                            <img src="../public/img/smail.png" alt="" id="smileBtn">
+                                        </li>
+                                        <li>
+                                            <div class="files">
+                                                <img src="../public/img/pic.png" alt="" id="addImage">
+                                                <input type="file" accept="image/*" id="files"
+                                                onchange="changeFiles(event)">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="infoInput text-right">
+                                    <textarea id="msgInput" class="form-control" data-emojiable="true"></textarea>
+                                    <br>
+                                    <button class="btn btn-info " id="sendBtn">Send</button>
+                                </div>
+                                <div id="emojiWrapper">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="changeInfo">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <h4 class="modal-title">Modify Information</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Nickname:<input type="text" class="form-control" id="newName" value="{{username}}"></p>
+                    <div class="imgBox">
+                        Image:<img src="{{image}}" alt="" id="editImage">
+                        <input type="file" accept="image/*" id="fileImg"
+                        onchange="editImageFn(event)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="editBtn">Ok</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="../public/js/jquery-1.11.2.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../public/js/js.js"></script>
+
+
+</body>
+</html>
